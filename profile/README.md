@@ -11,7 +11,7 @@ Explore live network activity, analyze smart contracts, query on-chain data, and
 </div>
 
 <p align="center">
-  <img src="assets/dashboard.jpg" alt="BlocRA network dashboard showing live Stellar mainnet data: transactions, active accounts, operations, fees and success rate for the latest ledger, with trend charts over the last 60 stored ledgers" width="100%" />
+  <img src="https://raw.githubusercontent.com/Blocra-HQ/.github/main/profile/assets/dashboard.jpg" alt="BlocRA network dashboard showing live Stellar mainnet data: transactions, active accounts, operations, fees and success rate for the latest ledger, with trend charts over the last 60 stored ledgers" width="100%" />
   <br />
   <sub>The network dashboard on Stellar mainnet: every ledger is collected, so the charts cover the last 60 ledgers from the first page load.</sub>
 </p>
