@@ -10,19 +10,25 @@ Explore live network activity, analyze smart contracts, query on-chain data, and
 
 </div>
 
+<p align="center">
+  <img src="assets/dashboard.jpg" alt="BlocRA network dashboard showing live Stellar mainnet data: transactions, active accounts, operations, fees and success rate for the latest ledger, with trend charts over the last 60 stored ledgers" width="100%" />
+  <br />
+  <sub>The network dashboard on Stellar mainnet: every ledger is collected, so the charts cover the last 60 ledgers from the first page load.</sub>
+</p>
+
 ---
 
 ## What BlocRA does
 
 BlocRA is an analytics platform for on-chain data. **Stellar is the default chain**, and the same tools
-work on 36 more networks, including Starknet, Ethereum and other EVM chains, and Solana.
+work on 36 more networks, including Starknet, Ethereum and other EVM chains, Solana and Cosmos chains.
 
 | Feature | Description |
 |---------|-------------|
-| **Network dashboard** | Live stats from the latest Stellar ledger (via Horizon) or Starknet block: transactions, failures, fees actually paid, operation and transaction types |
+| **Network dashboard** | Live stats for 37 chains (transactions, failures, fees actually paid, transaction types), with history: every Stellar ledger is collected and stored |
 | **Contract analysis** | Pulls a contract's events (Soroban contracts on Stellar, plus EVM and Starknet contracts) and turns them into activity, user, and volume analytics |
-| **Query editor** | Write SQL over blocks, transactions and contracts, or describe what you want and let the AI write the query |
-| **Dashboard builder** | Arrange charts and query results into dashboards you can share |
+| **Query editor** | Real SQL over the data BlocRA collects (Stellar ledgers, transactions and operations, and sampled blocks from other chains), or describe what you want and let the AI write the query |
+| **Dashboard builder** | Turn queries into number, line, bar, pie and table widgets; save dashboards to your account and export them as PNG or JSON |
 | **AI analyst** | Chat, written contract reports, and natural-language-to-SQL, powered by any OpenAI-compatible model, including a self-hosted gpt-oss |
 | **Verifiable reports** | Export a contract report as PDF or DOCX, publish its fingerprint on Stellar, and let anyone check that a copy is authentic and unmodified |
 | **Stellar sign-in** | Sign in with a Freighter wallet by signing a one-time challenge (SEP-53); no password needed |
