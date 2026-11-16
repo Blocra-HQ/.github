@@ -32,7 +32,7 @@ networks such as Ethereum and Base, Solana, Starknet and Cosmos chains).
 | **Query editor** | Real SQL over the data BlocRA collects (Stellar ledgers, transactions and operations, and sampled blocks from other chains), or describe what you want and let the AI write the query |
 | **Dashboard builder** | Turn queries into number, line, bar, pie and table widgets; save dashboards to your account and export them as PNG or JSON |
 | **AI analyst** | Chat, written contract reports, and natural-language-to-SQL, powered by any OpenAI-compatible model, including a self-hosted gpt-oss |
-| **Traction reports** | 7- or 30-day reports on a Soroban contract or Stellar asset: active, new and returning accounts, failure rate, concentration and bot share, ecosystem rank, with coverage and methodology |
+| **Traction reports** | Reports over any period (today, 7 or 30 days, a year, all time, or custom dates) on a Soroban contract or Stellar asset: active, new and returning accounts, failure rate, concentration and bot share, ecosystem rank, with coverage and methodology |
 | **Verifiable reports** | Export a report as PDF, Markdown or JSON, publish its fingerprint on Stellar, and let anyone check that a copy is authentic and unmodified |
 | **Stellar sign-in** | Sign in with a Freighter wallet by signing a one-time challenge (SEP-53); no password needed |
 
@@ -94,7 +94,7 @@ and shows who published it and when, or that it was changed.
 | [**blocra-frontend**](https://github.com/Blocra-HQ/blocra-frontend) | The web app: dashboard, contract analysis, query editor, dashboard builder, report verification | React · TypeScript · Vite · Tailwind |
 | [**blocra-backend**](https://github.com/Blocra-HQ/blocra-backend) | The API: network stats, wallet sign-in, saved queries and dashboards, AI analyst | Rust · Actix-web · SQLite |
 | [**blocra-contracts**](https://github.com/Blocra-HQ/blocra-contracts) | The on-chain report registry that makes published reports verifiable | Rust · Soroban |
-| [**blocra-cli**](https://github.com/Blocra-HQ/blocra-cli) | `npx blocra`: fetch BlocRA-signed traction reports for your contracts or assets and verify them, from the terminal or a GitHub Action | Node.js · zero dependencies |
+| [**blocra-cli**](https://github.com/Blocra-HQ/blocra-cli) | `blocra`: fetch BlocRA-signed traction reports for your contracts or assets and verify them, from the terminal or a GitHub Action | Rust · single binary |
 | [**blocra-research**](https://github.com/Blocra-HQ/blocra-research) | The verified chain registry and the RPC checker behind it | Python · JSON |
 | [blocra-backend-legacy](https://github.com/Blocra-HQ/blocra-backend-legacy) | The original Node.js API, archived for reference | Node.js · Express · MongoDB |
 
@@ -145,6 +145,47 @@ flowchart LR
 - **Report registry:** report hashes are published on Stellar from the user's wallet, so anyone can
   verify a copy. The registry runs on testnet as
   [`CD7UABTK…5CPW`](https://stellar.expert/explorer/testnet/contract/CD7UABTKAOO2EZ2A543GIIHQED6PPMIPK2NU47W5GKCRDJ26UPZ45CPW).
+
+## Roadmap
+
+Next up, in rough order. Done so far: contract events and interface decoding (calls and events with
+real field names, token flows, users reached through other contracts) and analysis over any time
+frame, in the API, SQL, reports and CLI.
+
+**Product**
+
+- [ ] **Contract activity page** in the web app: a contract's interface, recent calls and events,
+  users reached directly and through other contracts, and token flows, with the time-frame picker
+  (hourly for recent windows, daily otherwise). The API (`/api/contracts/{id}/…`) is ready.
+- [ ] **App-type detection:** label each contract (token, DEX, lending, NFT, DAO, oracle, game, wallet,
+  …) from its interface, standards, events and behaviour, show the evidence and confidence, and say
+  "Unknown" rather than guess.
+- [ ] **Metrics per app type** on top of the shared core: e.g. swaps, volume and liquidity for DEXes;
+  supplied, borrowed and liquidations for lending; mints, holders and sales for NFTs; turnout for DAOs.
+- [ ] **USD values and TVL:** prices from an on-chain oracle (Reflector) or Stellar DEX trades; what each
+  contract holds, built on the token-flow data already collected.
+- [ ] **Full history:** backfill from Stellar's public ledger archive (or the Hubble dataset) so
+  analysis isn't limited to what BlocRA has collected since it started.
+- [ ] **Sybil and bot detection:** group wallets by who funded them and by timing, beyond the current
+  1,000-actions-a-day rule.
+- [ ] **Bring your own RPC:** let users add their own RPC endpoint and contract in the app (today it is a
+  server setting, `RPC_URL_<CHAIN>`).
+- [ ] **More chains on the same model:** the event, interface and time-frame layer is chain-neutral;
+  add other chains to it after Stellar. Optionally link off-chain usage (web and API analytics).
+
+**Releases**
+
+- [ ] Tag `blocra-cli` v0.3.0 to publish prebuilt binaries (Linux, macOS, Windows), and decide on
+  crates.io.
+- [ ] Next report method version: change the verification line in signed Markdown from
+  `npx blocra verify` to `blocra verify`, in both the CLI and web renderers, without breaking
+  reports already issued.
+
+**Funding**
+
+- [ ] Stellar Community Fund: decide between an Open Track application for BlocRA, proposing
+  verifiable traction reports as an RFP idea on Stellarlight, or a proposal for the open
+  "Web and API Analytics" RFP.
 
 ## Getting started
 
